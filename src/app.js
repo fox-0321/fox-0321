@@ -1,6 +1,6 @@
-﻿import { appConfig } from "./config.js";
-import { provinces } from "./province-data.js";
-import { chinaGeoData } from "./china-geo-data.js";
+﻿import { appConfig } from "./config.js?v=20260320b";
+import { provinces } from "./province-data.js?v=20260320b";
+import { chinaGeoData } from "./china-geo-data.js?v=20260320b";
 
 const state = {
   activePhotos: new Set(),

@@ -192,3 +192,9 @@
 
 - Reduced the main `Memories of ...` title scale slightly across desktop and mobile breakpoints.
 - Kept the single-line treatment while making the heading feel less oversized.
+
+
+### 2026-03-20 - Frontend Cache Busting Added
+
+- Added explicit version query strings to the published CSS and JS entry points.
+- Versioned the `src/app.js` module imports too, so updated config and map modules are forced to refresh instead of serving stale browser cache.
