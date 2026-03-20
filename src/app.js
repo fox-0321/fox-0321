@@ -38,10 +38,18 @@ init();
 
 async function init() {
   try {
-    const [geoData, activeSlugs] = await Promise.all([loadGeoData(), discoverPhotos()]);
+    const geoData = await loadGeoData();
     prepareMapData(geoData);
     renderMap();
-    state.activePhotos = new Set(activeSlugs);
+
+    try {
+      const activeSlugs = await discoverPhotos();
+      state.activePhotos = new Set(activeSlugs);
+    } catch (error) {
+      console.error("Unable to load available photos", error);
+      state.activePhotos = new Set();
+    }
+
     updateProvinceStates();
   } catch (error) {
     console.error("Unable to initialize the map", error);
@@ -444,3 +452,4 @@ function openProvince(province, imageUrl) {
   mapView.hidden = true;
   viewer.hidden = false;
 }
+

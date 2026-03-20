@@ -152,3 +152,9 @@
 
 - GitHub Pages is only for the frontend.
 - Secure password validation must live in Function Compute or another real backend.
+
+### 2026-03-20 - Frontend Startup Resilience Fix
+
+- Decoupled map GeoJSON loading from photo-availability discovery.
+- The China map now renders even if the remote photo API or CORS setup is temporarily failing.
+- When the backend call fails, the page falls back to an all-locked map instead of showing `Map data failed to load.` for the entire site.
