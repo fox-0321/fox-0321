@@ -158,3 +158,15 @@
 - Decoupled map GeoJSON loading from photo-availability discovery.
 - The China map now renders even if the remote photo API or CORS setup is temporarily failing.
 - When the backend call fails, the page falls back to an all-locked map instead of showing `Map data failed to load.` for the entire site.
+
+### 2026-03-20 - Map Data Embedded For GitHub Pages
+
+- Stopped fetching `src/china-provinces.geojson` at runtime on the frontend.
+- Generated `src/china-geo-data.js` so the province geometry now ships as a JS module with the site.
+- This removes a likely GitHub Pages static-file failure point and makes map rendering more reliable after deployment.
+
+### 2026-03-20 - Map Data Source Repaired
+
+- Replaced the broken province GeoJSON with a clean parseable China map dataset.
+- Added `src/china-geo-data.js` as the frontend-loaded geometry module.
+- Normalized province feature IDs so the new map source still matches the existing province metadata and photo slugs.

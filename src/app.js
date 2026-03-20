@@ -1,5 +1,6 @@
 ﻿import { appConfig } from "./config.js";
 import { provinces } from "./province-data.js";
+import { chinaGeoData } from "./china-geo-data.js";
 
 const state = {
   activePhotos: new Set(),
@@ -131,11 +132,7 @@ function wireEvents() {
 }
 
 async function loadGeoData() {
-  const response = await fetch("./src/china-provinces.geojson", { cache: "no-store" });
-  if (!response.ok) {
-    throw new Error(`Map request failed with ${response.status}`);
-  }
-  return response.json();
+  return chinaGeoData;
 }
 
 async function discoverPhotos() {
@@ -149,12 +146,17 @@ async function discoverPhotos() {
   return Array.isArray(data.slugs) ? data.slugs : [];
 }
 
+function getFeatureId(feature) {
+  const rawId = String(feature.properties?.id ?? feature.id ?? "").trim();
+  return rawId.replace(/0000$/, "");
+}
+
 function prepareMapData(geoData) {
-  const features = geoData.features.filter((feature) => provinceMetaById.has(feature.properties.id));
+  const features = geoData.features.filter((feature) => provinceMetaById.has(getFeatureId(feature)));
   state.projection = createProjection(features);
   state.geoFeatures = new Map(
     features.map((feature) => {
-      const meta = provinceMetaById.get(feature.properties.id);
+      const meta = provinceMetaById.get(getFeatureId(feature));
       return [meta.slug, { feature, path: buildPath(feature.geometry, state.projection.project) }];
     })
   );
@@ -452,4 +454,5 @@ function openProvince(province, imageUrl) {
   mapView.hidden = true;
   viewer.hidden = false;
 }
+
 
