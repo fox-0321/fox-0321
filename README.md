@@ -31,6 +31,13 @@ Examples:
    `npm run dev`
 5. Visit `http://localhost:4000`
 
+If you want different passwords for different provinces in local mode, you can use either:
+
+- `PHOTO_PASSCODE_MAP_PATH=server-data/photo-passcodes.json`
+- `PHOTO_PASSCODE_MAP_JSON={"beijing":"fox-001","jiangsu":"cat-002"}`
+
+An example file is included at [photo-passcodes.example.json](/e:/他人物品/260321/repo/photo-passcodes.example.json).
+
 ## GitHub Pages + Alibaba Cloud architecture
 
 The final production architecture should be:
@@ -97,6 +104,18 @@ Example:
 ```
 
 If a province exists in `PHOTO_PASSCODE_MAP_JSON`, that password is used. Otherwise the backend falls back to `PHOTO_PASSCODE` if you set one.
+
+Example for your current unlocked provinces:
+
+```json
+{
+  "beijing": "fox-001",
+  "jiangsu": "cat-002",
+  "hunan": "memory-003",
+  "guangdong": "sunset-004",
+  "hong-kong": "harbor-005"
+}
+```
 
 ## Alibaba Cloud deployment steps
 
@@ -191,6 +210,8 @@ Set in `.env`:
 
 - `PHOTO_SOURCE=local`
 - `PHOTO_PASSCODE=your-password`
+- optional: `PHOTO_PASSCODE_MAP_PATH=server-data/photo-passcodes.json`
+- optional: `PHOTO_PASSCODE_MAP_JSON={"beijing":"fox-001","jiangsu":"cat-002"}`
 - `TOKEN_SECRET=your-long-random-secret`
 
 Photos are read from the existing `photos/<province-slug>/photo.*` folders, but they are no longer publicly exposed as static files. The server issues a short-lived tokenized URL for each successful password check.
@@ -203,6 +224,8 @@ Set in `.env`:
 
 - `PHOTO_SOURCE=oss`
 - `PHOTO_PASSCODE=your-password`
+- optional: `PHOTO_PASSCODE_MAP_PATH=server-data/photo-passcodes.json`
+- optional: `PHOTO_PASSCODE_MAP_JSON={"beijing":"fox-001","jiangsu":"cat-002"}`
 - `TOKEN_SECRET=your-long-random-secret`
 - `PHOTO_MANIFEST_PATH=server-data/photo-manifest.json`
 - `OSS_REGION=oss-cn-hangzhou`

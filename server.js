@@ -12,6 +12,7 @@ const photoSource = process.env.PHOTO_SOURCE ?? "local";
 const photoPasscode = process.env.PHOTO_PASSCODE ?? "";
 const tokenSecret = process.env.TOKEN_SECRET ?? randomBytes(32).toString("hex");
 const manifestPath = process.env.PHOTO_MANIFEST_PATH ?? join(root, "server-data", "photo-manifest.json");
+const passcodeMapPath = process.env.PHOTO_PASSCODE_MAP_PATH ?? join(root, "server-data", "photo-passcodes.json");
 const protectedPrefixes = ["/.git", "/server-data", "/photos"];
 
 const mimeTypes = {
@@ -68,13 +69,6 @@ async function handleAvailablePhotos(response) {
 }
 
 async function handlePhotoAccess(request, response) {
-  if (!photoPasscode) {
-    writeJson(response, 500, {
-      error: "PHOTO_PASSCODE is not configured on the server."
-    });
-    return;
-  }
-
   const body = await readJsonBody(request);
   const slug = typeof body.slug === "string" ? body.slug.trim() : "";
   const passcode = typeof body.passcode === "string" ? body.passcode.trim() : "";
@@ -84,7 +78,17 @@ async function handlePhotoAccess(request, response) {
     return;
   }
 
-  if (!matchesSecret(passcode, photoPasscode)) {
+  const passcodes = await loadPasscodes();
+  const expectedPasscode = passcodes[slug] ?? photoPasscode;
+
+  if (!expectedPasscode) {
+    writeJson(response, 500, {
+      error: "PHOTO_PASSCODE or PHOTO_PASSCODE_MAP_PATH is not configured on the server."
+    });
+    return;
+  }
+
+  if (!matchesSecret(passcode, expectedPasscode)) {
     writeJson(response, 401, { error: "Wrong password." });
     return;
   }
@@ -241,6 +245,25 @@ async function loadManifest() {
   return parsed;
 }
 
+async function loadPasscodes() {
+  if (process.env.PHOTO_PASSCODE_MAP_JSON) {
+    return parseObjectJson(
+      process.env.PHOTO_PASSCODE_MAP_JSON,
+      "PHOTO_PASSCODE_MAP_JSON must be a JSON object mapping province slugs to passcodes."
+    );
+  }
+
+  if (existsSync(passcodeMapPath)) {
+    const raw = await fs.readFile(passcodeMapPath, "utf8");
+    return parseObjectJson(
+      raw,
+      "PHOTO_PASSCODE_MAP_PATH must point to a JSON object mapping province slugs to passcodes."
+    );
+  }
+
+  return {};
+}
+
 async function createOssClient() {
   const required = ["OSS_REGION", "OSS_BUCKET", "OSS_ACCESS_KEY_ID", "OSS_ACCESS_KEY_SECRET"];
 
@@ -298,6 +321,16 @@ function matchesSecret(input, expected) {
   }
 
   return timingSafeEqual(inputBuffer, expectedBuffer);
+}
+
+function parseObjectJson(raw, errorMessage) {
+  const parsed = JSON.parse(raw);
+
+  if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
+    throw new Error(errorMessage);
+  }
+
+  return parsed;
 }
 
 async function readJsonBody(request) {
