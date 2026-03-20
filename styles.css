@@ -396,22 +396,23 @@ body::after {
 
 .photo-frame {
   margin: 0;
+  width: fit-content;
+  max-width: 100%;
+  justify-self: center;
   border-radius: 24px;
   overflow: hidden;
   border: 2px solid rgba(48, 39, 31, 0.85);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.16)),
-    var(--paper-deep);
-  min-height: 280px;
+  background: rgba(255, 255, 255, 0.22);
 }
 
 .photo-frame img {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: min(100%, 78vw);
   height: auto;
   max-height: 74vh;
   object-fit: contain;
-  background: rgba(255, 255, 255, 0.4);
+  background: transparent;
 }
 
 .sr-only {

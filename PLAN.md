@@ -176,3 +176,9 @@
 - Kept Alibaba Function Compute on the existing `PHOTO_PASSCODE_MAP_JSON` flow for per-province passwords.
 - Updated the local `server.js` backend to support per-province passcodes too, via either `PHOTO_PASSCODE_MAP_JSON` or `PHOTO_PASSCODE_MAP_PATH`.
 - Added [photo-passcodes.example.json](/e:/他人物品/260321/repo/photo-passcodes.example.json) and expanded the README and `.env.example` so the configuration is easier to follow.
+
+### 2026-03-20 - Guess-The-Place UI Polish
+
+- Reworded the province prompt flow around guessing the place of the memory instead of entering a generic password.
+- Removed the visible `CHINA` label above the map.
+- Changed the photo frame so the black outline now hugs the displayed image instead of forcing a large fixed box with empty space.

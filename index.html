@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -17,7 +17,7 @@
         <div class="map-card sketch-card" id="map-view">
           <div class="map-header">
             <div>
-              <p class="section-label" id="map-label">China</p>
+              <p class="section-label" id="map-label"></p>
               <h2 id="map-title">Tap a colored province to open a photo</h2>
             </div>
             <div class="legend" aria-label="Legend">
@@ -48,20 +48,20 @@
 
   <div class="auth-dialog" id="auth-dialog" hidden>
     <div class="auth-card sketch-card" role="dialog" aria-modal="true" aria-labelledby="auth-title">
-      <p class="section-label">Protected Photo</p>
-      <h2 id="auth-title">Enter password to view this photo</h2>
-      <p class="gate-copy" id="auth-copy">Your password is sent to the server, which returns a short-lived image link only after verification.</p>
+      <p class="section-label" id="auth-label">Guess the place</p>
+      <h2 id="auth-title">Guess where this memory happened</h2>
+      <p class="gate-copy" id="auth-copy">Type the place name. If your guess is correct, the server returns a short-lived image link.</p>
       <form id="auth-form" class="gate-form">
-        <label class="sr-only" for="auth-input">Password</label>
+        <label class="sr-only" for="auth-input">Place guess</label>
         <input
           id="auth-input"
           name="auth-password"
           type="password"
           autocomplete="off"
-          placeholder="Enter password"
+          placeholder="Guess the place"
           required
         >
-        <button type="submit" id="auth-submit">View photo</button>
+        <button type="submit" id="auth-submit">Check guess</button>
       </form>
       <p class="gate-error" id="auth-error" role="alert" hidden>Wrong password.</p>
       <div class="auth-actions">

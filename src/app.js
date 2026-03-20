@@ -25,6 +25,7 @@ const viewerSubtitle = document.querySelector("#viewer-subtitle");
 const viewerImage = document.querySelector("#viewer-image");
 const backButton = document.querySelector("#back-button");
 const authDialog = document.querySelector("#auth-dialog");
+const authLabel = document.querySelector("#auth-label");
 const authTitle = document.querySelector("#auth-title");
 const authCopy = document.querySelector("#auth-copy");
 const authForm = document.querySelector("#auth-form");
@@ -75,6 +76,7 @@ function applyConfigText() {
   setText("#viewer-label", appConfig.texts.viewerLabel);
   setText("#viewer-subtitle", appConfig.texts.viewerSubtitle);
   setText("#back-button", appConfig.texts.backButton);
+  setText("#auth-label", appConfig.texts.authLabel);
   setText("#auth-title", appConfig.texts.authTitle);
   setText("#auth-copy", appConfig.texts.authCopy);
   setText("#auth-submit", appConfig.texts.authSubmit);
@@ -84,9 +86,12 @@ function applyConfigText() {
 
 function setText(selector, value) {
   const element = document.querySelector(selector);
-  if (element) {
-    element.textContent = value;
+  if (!element) {
+    return;
   }
+
+  element.textContent = value;
+  element.hidden = !value;
 }
 
 function wireEvents() {
