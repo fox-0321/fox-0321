@@ -213,3 +213,13 @@
 
 - Replaced the earlier text-align-only centering with explicit flex centering on the hero container.
 - Made the hero title itself full-width and center-aligned so iOS Safari does not leave it visually left-shifted.
+
+### 2026-03-20 - Viewer Province Title Font Unified
+
+- Switched the photo viewer province heading from the sketch display font to the same body font family used elsewhere.
+- Kept the dialog heading on the sketch display font for contrast.
+
+### 2026-03-20 - Sketch Font Fully Removed
+
+- Removed the hand-drawn display font styling from the whole site.
+- Unified all headings and labels onto the same body font stack for a cleaner, more consistent look.

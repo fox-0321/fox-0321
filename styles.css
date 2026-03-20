@@ -10,7 +10,7 @@
   --inactive-fill: #d4cab8;
   --inactive-stroke: #8f8577;
   --shadow: 7px 8px 0 rgba(48, 39, 31, 0.12);
-  --font-display: "Segoe Print", "Bradley Hand", "KaiTi", "STKaiti", cursive;
+  --font-display: "Aptos", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-body: "Aptos", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 
@@ -93,18 +93,9 @@ body::after {
 .viewer-copy h2,
 .gate-card h2 {
   margin: 0;
-  line-height: 1.02;
-}
-
-.hero-title,
-.map-header h2 {
   font-family: var(--font-body);
   font-weight: 700;
-}
-
-.viewer-copy h2,
-.gate-card h2 {
-  font-family: var(--font-display);
+  line-height: 1.02;
 }
 
 .hero-title {
