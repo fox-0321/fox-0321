@@ -187,3 +187,8 @@
 
 - Switched the viewer photo frame to an inline-block shrink-wrap layout.
 - Made the image fill the frame width so the stray right-side white strip is removed.
+
+### 2026-03-20 - Hero Title Size Reduced
+
+- Reduced the main `Memories of ...` title scale slightly across desktop and mobile breakpoints.
+- Kept the single-line treatment while making the heading feel less oversized.

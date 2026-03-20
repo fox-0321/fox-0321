@@ -3,7 +3,7 @@
   apiBaseUrl: "https://birthdahoto-api-htplqlqfzf.cn-hangzhou.fcapp.run",
   texts: {
     mapLabel: "",
-    mapTitle: "Tap a colored province to open a photo",
+    mapTitle: "Tap a colored province to open a memory",
     legendActive: "Unlocked",
     legendInactive: "Locked",
     viewerLabel: "Photo Viewer",
@@ -12,7 +12,7 @@
     activeProvinceHint: "password required",
     authLabel: "Guess the place",
     authTitle: "Guess where this memory happened",
-    authCopy: "Type the place name. If your guess is correct, the server returns a short-lived image link.",
+    authCopy: "Type the place name, with lowercase letters (pinyin or English) only.",
     authPlaceholder: "Guess the place",
     authSubmit: "Check guess",
     authCancel: "Cancel",
