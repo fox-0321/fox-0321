@@ -208,3 +208,8 @@
 
 - Center-aligned the main `Memories of ...` heading within the hero area.
 - Reduced the title scale another step across desktop and mobile breakpoints.
+
+### 2026-03-20 - Hero Title Centering Hardened For Mobile Safari
+
+- Replaced the earlier text-align-only centering with explicit flex centering on the hero container.
+- Made the hero title itself full-width and center-aligned so iOS Safari does not leave it visually left-shifted.

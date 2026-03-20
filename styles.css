@@ -71,8 +71,9 @@ body::after {
 }
 
 .hero {
+  display: flex;
+  justify-content: center;
   margin-bottom: 24px;
-  text-align: center;
   animation: rise-in 520ms ease-out both;
 }
 
@@ -107,10 +108,11 @@ body::after {
 }
 
 .hero-title {
-  display: inline-block;
-  width: auto;
+  display: block;
+  width: 100%;
   max-width: 100%;
-  margin-inline: auto;
+  margin: 0 auto;
+  text-align: center;
   font-size: clamp(2.05rem, 5.4vw, 4rem);
   white-space: nowrap;
 }
@@ -457,7 +459,7 @@ body::after {
 
 @media (max-width: 920px) {
   .hero-title {
-    width: auto;
+    width: 100%;
     max-width: 100%;
     font-size: clamp(1.95rem, 5.3vw, 3.35rem);
   }
@@ -506,7 +508,7 @@ body::after {
   }
 
   .hero-title {
-    width: auto;
+    width: 100%;
     max-width: 100%;
     font-size: clamp(1.7rem, 5vw, 2.35rem);
   }
