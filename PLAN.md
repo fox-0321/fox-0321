@@ -182,3 +182,8 @@
 - Reworded the province prompt flow around guessing the place of the memory instead of entering a generic password.
 - Removed the visible `CHINA` label above the map.
 - Changed the photo frame so the black outline now hugs the displayed image instead of forcing a large fixed box with empty space.
+
+### 2026-03-20 - Photo Frame Tightened Further
+
+- Switched the viewer photo frame to an inline-block shrink-wrap layout.
+- Made the image fill the frame width so the stray right-side white strip is removed.
