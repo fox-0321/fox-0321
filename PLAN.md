@@ -203,3 +203,8 @@
 
 - Switched the `Memories of ...` hero line and the map subtitle line back to the body font family.
 - Kept the sketch display font on the viewer and dialog headings only.
+
+### 2026-03-20 - Hero Title Centered And Reduced Again
+
+- Center-aligned the main `Memories of ...` heading within the hero area.
+- Reduced the title scale another step across desktop and mobile breakpoints.
