@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Map Gift</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <h1 class="hero-title" id="site-title">Memories of Fox and Cat</h1>
+    </header>
+
+    <main>
+      <section class="app-panel" id="app-panel">
+        <div class="map-card sketch-card" id="map-view">
+          <div class="map-header">
+            <div>
+              <p class="section-label" id="map-label">China</p>
+              <h2 id="map-title">Tap a colored province to open a photo</h2>
+            </div>
+            <div class="legend" aria-label="Legend">
+              <span><i class="swatch swatch-active"></i><span id="legend-active">Unlocked</span></span>
+              <span><i class="swatch swatch-inactive"></i><span id="legend-inactive">Locked</span></span>
+            </div>
+          </div>
+
+          <div class="map-stage">
+            <svg id="china-map" viewBox="0 0 980 760" role="img" aria-labelledby="map-title"></svg>
+          </div>
+        </div>
+
+        <div class="viewer-card sketch-card" id="viewer" hidden>
+          <button type="button" class="back-button" id="back-button">Back to map</button>
+          <div class="viewer-copy">
+            <p class="section-label" id="viewer-label">Photo Viewer</p>
+            <h2 id="viewer-title">Province</h2>
+            <p id="viewer-subtitle">Shared memory</p>
+          </div>
+          <figure class="photo-frame">
+            <img id="viewer-image" alt="">
+          </figure>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="auth-dialog" id="auth-dialog" hidden>
+    <div class="auth-card sketch-card" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+      <p class="section-label">Protected Photo</p>
+      <h2 id="auth-title">Enter password to view this photo</h2>
+      <p class="gate-copy" id="auth-copy">Your password is sent to the server, which returns a short-lived image link only after verification.</p>
+      <form id="auth-form" class="gate-form">
+        <label class="sr-only" for="auth-input">Password</label>
+        <input
+          id="auth-input"
+          name="auth-password"
+          type="password"
+          autocomplete="off"
+          placeholder="Enter password"
+          required
+        >
+        <button type="submit" id="auth-submit">View photo</button>
+      </form>
+      <p class="gate-error" id="auth-error" role="alert" hidden>Wrong password.</p>
+      <div class="auth-actions">
+        <button type="button" class="back-button auth-cancel" id="auth-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
