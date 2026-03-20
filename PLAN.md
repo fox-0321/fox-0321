@@ -198,3 +198,8 @@
 
 - Added explicit version query strings to the published CSS and JS entry points.
 - Versioned the `src/app.js` module imports too, so updated config and map modules are forced to refresh instead of serving stale browser cache.
+
+### 2026-03-20 - Hero And Map Title Font Unified
+
+- Switched the `Memories of ...` hero line and the map subtitle line back to the body font family.
+- Kept the sketch display font on the viewer and dialog headings only.
